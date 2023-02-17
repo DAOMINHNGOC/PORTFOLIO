@@ -2,14 +2,16 @@
   "projects": [
     {
       "name": "Dự án 2",
-      "price": "3000",
-      "description": "",
+      "date": "2003-05-22",
+      "author": "ngocj",
+      "link": "undefined",
       "image": "",
+      "description": "",
       "id": 1
     },
     {
       "name": "Dự án 3",
-      "date": "undefined",
+      "date": "2003-05-22",
       "author": "undefined",
       "link": "https://www.youtube.com/watch?v=Cdxri1O0-0U&t=585s&ab_channel=ChillWithMeJikBEAT",
       "image": "",

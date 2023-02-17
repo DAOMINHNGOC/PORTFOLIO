@@ -26,18 +26,19 @@ const PortfolioPage = () => {
                 .map((project) => {
                   return `
                 <div class="rows grid grid-cols-2 gap-10 mb-7">
-                    <div class="col image ">
-                        <a href="${project.link}"> 
-                        <img src="https://res.cloudinary.com/fashsion-brand/image/upload/v1655976667/image_45_mw2kej.jpg" width="500" class="h-[300px] hover:opacity-50 hover:transition-all  hover:scale-105 rounded-md " alt=""></a>
+                    <div class="col image overflow-hidden rounded-md"> 
+                        <a href="${project.link}" > 
+                        <img src="https://res.cloudinary.com/fashsion-brand/image/upload/v1655976667/image_45_mw2kej.jpg" width="500" class="h-[300px] hover:opacity-50 hover:transition-all   hover:scale-105 rounded-md " alt=""></a>
                     </div>
                     
                     <div class="col bg-white p-6 border rounded-md hover:shadow-xl hover:transition-all">
                         <div class="">
+                            <span>${project.date}</span>
                             <h1 class=" font-bold text-[20px] hover:text-[21px] hover:transition-all hover:text-red-500"><a href="">${project.name}</a></h1>
                             <h3 class="font-bold mb-6"><a href="">Role Title</a></h3>
                         </div>
                         <p class="mb-4">${project.description}</p>
-                        <a class="bg-blue-700 rounded-lg  hover:text-blue-600 hover:bg-slate-300 text-white  font-bold px-8 py-3"
+                        <a class="bg-blue-700 rounded-lg   hover:bg-blue-900 hover:bg-slate-300 text-white  font-bold px-8 py-3"
                             href="">Demo <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>

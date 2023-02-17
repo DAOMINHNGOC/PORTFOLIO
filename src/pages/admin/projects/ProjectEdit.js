@@ -58,7 +58,7 @@ const ProjectEdit = ({ id }) => {
                         </div>
                         <div>
                             <label>Ngày đăng</label>
-                            <input type="text" id="date" value="${
+                            <input type="date" id="date" value="${
                               projects.date
                             }" class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4"
                                 placeholder="Ngày đăng">
