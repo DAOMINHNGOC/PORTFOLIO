@@ -1,0 +1,51 @@
+{
+  "projects": [
+    {
+      "name": "Dự án 2",
+      "price": "3000",
+      "description": "",
+      "image": "",
+      "id": 1
+    },
+    {
+      "name": "Dự án 3",
+      "id": 2,
+      "price": 3000,
+      "description": "đẹp"
+    },
+    {
+      "name": "Dự án 4",
+      "id": 3,
+      "price": 3000,
+      "description": "đẹp"
+    }
+  ],
+  "categories": [
+    {
+      "name": "HTML",
+      "id": 1
+    },
+    {
+      "name": "JS",
+      "id": 2
+    },
+    {
+      "name": "PHP",
+      "id": 4
+    }
+  ],
+  "account": [
+    {
+      "name": "",
+      "id": 1
+    },
+    {
+      "name": "JS",
+      "id": 2
+    },
+    {
+      "name": "PHP",
+      "id": 3
+    }
+  ]
+}

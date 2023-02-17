@@ -1,0 +1,47 @@
+import Footer from "../../components/view/Footer";
+import Header from "../../components/view/Header";
+
+const AboutPage = () => {
+  return `
+    ${Header()}
+    <!----------------------------------------------------------------- content -->
+    <div class=" ">
+        <!-- Title -->
+        <section class=" text-center bg-[#e6dace]">
+            <h1 class=" font-black text-[32px] pt-20 pb-8">About Me</h1>
+            <p class="pb-8">My introduction</p>
+        </section>
+        <!-- project name 1 -->
+        <section class="w-[950px] mx-auto mb-[80px] mt-20">
+            <div class="rows grid grid-cols-[400px,auto] gap-20">
+                <div class="col image">
+                    <img class="rounded-xl hover:scale-110 transition-all" src="./image/JEKP9863.JPG" alt="">
+                </div>
+                <div class="col bg-white p-8">
+
+                    <p class="text-[18px]">Web developer, with extensive knowledge and years of experience, working
+                        in web technologies
+                        and UI / UX design, delivering quality work</p>
+                    <div class="grid grid-cols-3 gap-7 text-center mt-10">
+                        <div class="col"><span class=" text-[20px]  font-black ">08+</span> <br>
+                            <p>Years experience</p>
+                        </div>
+                        <div class="col"><span class=" text-[20px]  font-black ">20+</span> <br>
+                            <p>Complete projects</p>
+                        </div>
+                        <div class="col"><span class=" text-[20px]  font-black ">05+ </span><br>
+                            <p>Companies worked</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    ${Footer()}
+  `;
+};
+
+export default AboutPage;
