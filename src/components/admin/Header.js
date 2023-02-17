@@ -9,8 +9,8 @@ const Header = () => {
             <div class=" grid grid-cols-[400px,auto] pt-10 gap-12">
                 <!-- ----------------------------------------HEADER -->
                 <header class="bg-white">
-                    <div class="w-[80px] mx-auto">
-                        <img src="" width="80" class="h-[80px] rounded-full" alt="">
+                    <div class="w-[200px] mx-auto">
+                        <a href="/"><img src="src/image/logo.png" width="200" class="h-[200px] rounded-full" alt=""></a>
                     </div>
                     ${Nav()}
                 </header>

@@ -9,9 +9,12 @@
     },
     {
       "name": "Dự án 3",
-      "id": 2,
-      "price": 3000,
-      "description": "đẹp"
+      "date": "undefined",
+      "author": "undefined",
+      "link": "https://www.youtube.com/watch?v=Cdxri1O0-0U&t=585s&ab_channel=ChillWithMeJikBEAT",
+      "image": "",
+      "description": "",
+      "id": 2
     },
     {
       "name": "Dự án 4",
