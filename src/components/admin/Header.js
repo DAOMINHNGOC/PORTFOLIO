@@ -10,7 +10,7 @@ const Header = () => {
                 <!-- ----------------------------------------HEADER -->
                 <header class="bg-white">
                     <div class="w-[200px] mx-auto">
-                        <a href="/"><img src="src/image/logo.png" width="200" class="h-[200px] rounded-full" alt=""></a>
+                        <a href="/"><img src="https://res.cloudinary.com/fashsion-brand/image/upload/v1676633154/portfolio/logo_u0yyhm.png" width="200" class="h-[200px] rounded-full" alt=""></a>
                     </div>
                     ${Nav()}
                 </header>
