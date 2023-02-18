@@ -1,3 +1,4 @@
+import axios from "axios";
 import Footer from "../../../components/admin/Footer";
 import Header from "../../../components/admin/Header";
 import { useEffect, useState } from "../../../lib";
@@ -6,16 +7,15 @@ const ProjectList = () => {
   const [projects, setProject] = useState([]);
   const [categories, setcategory] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/categories")
-      .then((response) => response.json())
-      .then((data) => setcategory(data));
+    axios
+      .get("http://localhost:3000/categories")
+      .then(({ data }) => setcategory(data));
   }, []);
   useEffect(() => {
-    fetch("http://localhost:3000/projects")
-      .then((response) => response.json())
-      .then((data) => setProject(data));
+    axios
+      .get("http://localhost:3000/projects")
+      .then(({ data }) => setProject(data));
   }, []);
-
   // XÓA
   useEffect(() => {
     const btns = document.querySelectorAll("#btn-remove");
@@ -23,18 +23,16 @@ const ProjectList = () => {
       btn.addEventListener("click", function (e) {
         e.preventDefault();
         // Xóa local
-        const id = this.dataset.id;
-        const newProject = projects.find((project) => project.id != id);
+        const id = btn.dataset.id;
+        const newProject = projects.filter((project) => project.id != id);
         setProject(newProject);
-
         // Xóa server
-        fetch("http://localhost:3000/projects/" + id, {
-          method: "DELETE",
-        }).then(() => alert("Xóa thành công"));
+        axios
+          .delete(`http://localhost:3000/projects/${id}`)
+          .then(() => alert("Xóa thành công"));
       });
     }
   });
-
   return `
    ${Header()}
    <!-- -----------------------------------------CONTENT -->
@@ -43,10 +41,10 @@ const ProjectList = () => {
            <h1 class="font-bold text-[30px] ">List Projects</h1>
            <form id="form-search" class="ml-6">
               <select name="" id="" class="w-[200px] px-2 py-2 border  rounded-md">
-              <option value="">All</option>
               ${categories.map((cate) => {
-                return `<option value="${cate.id}">${cate.name}</option>`;
+                return `<option>${cate.name}</option>`;
               })}
+              
               </select>
                <input type="text" data-id="${
                  projects.id

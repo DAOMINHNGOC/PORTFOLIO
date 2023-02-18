@@ -21,11 +21,7 @@ const debounce = (fn, timeout = 100) => {
 };
 
 const render = (component, container) => {
-  if (typeof component === "function") {
-    container.innerHTML = component();
-  } else {
-    container.innerHTML = component;
-  }
+  container.innerHTML = component();
 
   rootComponent = component;
   rootContainer = container;

@@ -1,3 +1,4 @@
+import axios from "axios";
 import Footer from "../../../components/admin/Footer";
 import Header from "../../../components/admin/Header";
 import { router, useEffect, useState } from "../../../lib";
@@ -6,9 +7,9 @@ const ProjectEdit = ({ id }) => {
   const [projects, setProject] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:3000/projects/" + id)
-      .then((response) => response.json())
-      .then((data) => setProject(data));
+    axios
+      .get(`http://localhost:3000/projects/${id}`)
+      .then(({ data }) => setProject(data));
   }, []);
 
   useEffect(() => {
@@ -29,11 +30,9 @@ const ProjectEdit = ({ id }) => {
         image: image.value,
         description: description.value,
       };
-      fetch("http://localhost:3000/projects/" + id, {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(formData),
-      }).then(() => router.navigate("/admin/projects"));
+      axios
+        .put(`http://localhost:3000/projects/${id}`, formData)
+        .then(() => router.navigate("/admin/projects"));
     });
   });
   return `

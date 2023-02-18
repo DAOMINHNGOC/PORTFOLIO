@@ -1,3 +1,4 @@
+import axios from "axios";
 import Footer from "../../../components/admin/Footer";
 import Header from "../../../components/admin/Header";
 import { router, useEffect, useState } from "../../../lib";
@@ -5,9 +6,9 @@ import { router, useEffect, useState } from "../../../lib";
 const ProjectAdd = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/categories")
-      .then((response) => response.json())
-      .then((data) => setCategories(data));
+    axios
+      .get("http://localhost:3000/categories")
+      .then(({ data }) => setCategories(data));
   }, []);
   useEffect(() => {
     const form = document.querySelector(".form-add");
@@ -22,20 +23,16 @@ const ProjectAdd = () => {
       e.preventDefault();
       const formData = {
         name: name.value,
-        idcategory: idcategory.value,
+        idcategory: idcategory,
         date: date.value,
         author: author.value,
         link: link.value,
         image: image.value,
         description: description.value,
       };
-      fetch("http://localhost:3000/projects/", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }).then(() => router.navigate("/admin/projects/"));
+      axios
+        .post("http://localhost:3000/projects", formData)
+        .then(() => router.navigate("/admin/projects/"));
     });
   });
   return `
@@ -55,13 +52,11 @@ const ProjectAdd = () => {
                     <form class="form-add">
                         <div>
                             <label>Tên Loại</label><br>
-                            <select name="" id="" class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4">
-                <option id="idcategory" value="">All</option>
-                ${categories.map((cate) => {
-                  return `<option value="${cate.id}">${cate.name}</option>`;
-                })}
-                  
-                </select>
+                            <select  class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4">
+                              ${categories.map((cate) => {
+                                return `<option>${cate.name}</option>`;
+                              })}
+                            </select>
                         </div>
                         <div>
                             <label>Tên Project</label>
