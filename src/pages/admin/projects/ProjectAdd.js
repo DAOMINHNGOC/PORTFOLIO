@@ -19,22 +19,52 @@ const ProjectAdd = () => {
     const author = document.querySelector("#author");
     const description = document.querySelector(".description");
     const link = document.querySelector("#link");
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
+      const urls = await uploadfiles(image.files);
       const formData = {
         name: name.value,
         idcategory: idcategory,
         date: date.value,
         author: author.value,
         link: link.value,
+        gallery: urls,
         image: image.value,
         description: description.value,
       };
+
       axios
         .post("http://localhost:3000/projects", formData)
         .then(() => router.navigate("/admin/projects/"));
     });
   });
+  const uploadfiles = async (files) => {
+    if (files) {
+      const CLOUD_NAME = "fashsion-brand";
+      const PRESET_NAME = "upload-image";
+      const urls = [];
+      const FOLDER_NAME = "portfolio";
+      const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+      const formData = new FormData();
+
+      formData.append("upload_preset", PRESET_NAME);
+      formData.append("folder", FOLDER_NAME);
+
+      for (const file of files) {
+        formData.append("file", file);
+
+        const response = await axios.post(api, formData, {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        });
+        urls.push(response.data.secure_url);
+
+        // return urls;
+      }
+      return urls;
+    }
+  };
   return `
     ${Header()}
     <!-- -----------------------------------------CONTENT -->
@@ -70,7 +100,7 @@ const ProjectAdd = () => {
                         </div>
                         <div>
                             <label>Image</label>
-                            <input type="file" id="image" class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4"
+                            <input type="file" id="image" multiple class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4"
                                 placeholder="Image projects">
                         </div>
                         <div>

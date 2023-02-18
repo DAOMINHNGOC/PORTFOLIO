@@ -82,7 +82,7 @@ const ProjectList = () => {
                       project.date
                     }</td>
                     <td class="border text-center w-[130px]">${
-                      project.image
+                      project.gallery
                     }</td>
                     <td class="border text-center w-[140px]">${
                       project.author

@@ -34,7 +34,9 @@ const PortfolioPage = () => {
                 <div class="rows grid grid-cols-2 gap-4 mb-7">
                     <div class="col image overflow-hidden rounded-md"> 
                         <a href="${project.link}" > 
-                        <img src="https://res.cloudinary.com/fashsion-brand/image/upload/v1655976667/image_45_mw2kej.jpg" width="500" class="h-[300px] w-full h-full hover:opacity-50 hover:transition-all   hover:scale-105 rounded-md " alt=""></a>
+                        <img src="${
+                          project.gallery
+                        }" width="500" class="h-[300px] w-full h-full hover:opacity-50 hover:transition-all   hover:scale-105 rounded-md " alt=""></a>
                     </div>
                     
                     <div class=" bg-white p-6 border rounded-md hover:shadow-xl hover:transition-all">
