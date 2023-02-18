@@ -4,9 +4,9 @@ import Nav from "./Nav";
 const Header = () => {
   return `
   ${Head()}
-  <div class="bg-slate-50 block h-[820px]">
+  <div class="bg-slate-50 block">
         <div class="w-[1450px] mx-auto">
-            <div class=" grid grid-cols-[400px,auto] pt-10 gap-12">
+            <div class=" grid grid-cols-[250px,auto] pt-10 gap-12">
                 <!-- ----------------------------------------HEADER -->
                 <header class="bg-white">
                     <div class="w-[200px] mx-auto">
@@ -14,7 +14,6 @@ const Header = () => {
                     </div>
                     ${Nav()}
                 </header>
-                
             
   `;
 };

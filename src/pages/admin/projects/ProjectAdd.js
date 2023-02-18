@@ -3,8 +3,15 @@ import Header from "../../../components/admin/Header";
 import { router, useEffect, useState } from "../../../lib";
 
 const ProjectAdd = () => {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/categories")
+      .then((response) => response.json())
+      .then((data) => setCategories(data));
+  }, []);
   useEffect(() => {
     const form = document.querySelector(".form-add");
+    const idcategory = document.querySelector("#idcategory");
     const name = document.querySelector("#name");
     const date = document.querySelector("#date");
     const image = document.querySelector("#image");
@@ -15,6 +22,7 @@ const ProjectAdd = () => {
       e.preventDefault();
       const formData = {
         name: name.value,
+        idcategory: idcategory.value,
         date: date.value,
         author: author.value,
         link: link.value,
@@ -45,6 +53,16 @@ const ProjectAdd = () => {
                     </div>
                     
                     <form class="form-add">
+                        <div>
+                            <label>Tên Loại</label><br>
+                            <select name="" id="" class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4">
+                <option id="idcategory" value="">All</option>
+                ${categories.map((cate) => {
+                  return `<option value="${cate.id}">${cate.name}</option>`;
+                })}
+                  
+                </select>
+                        </div>
                         <div>
                             <label>Tên Project</label>
                             <input type="text" id="name" class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4"

@@ -76,8 +76,7 @@ const CategoryList = () => {
                     </table>
                     <form>
                         <a href="/admin/category/add"
-                            class="bg-slate-500 px-3 py-2 rounded-md text-white hover:bg-slate-600 deley-100">Nhập
-                            lại</a>
+                            class="bg-slate-500 px-3 py-2 rounded-md text-white hover:bg-slate-600 deley-100">Thêm mới</a>
                         <button
                             class="bg-blue-500 px-3 py-2 rounded-md text-white hover:bg-blue-600 deley-100">Xóa Tất cả</button>
                     </form>

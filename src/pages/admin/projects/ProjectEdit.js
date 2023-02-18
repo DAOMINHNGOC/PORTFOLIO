@@ -4,11 +4,13 @@ import { router, useEffect, useState } from "../../../lib";
 
 const ProjectEdit = ({ id }) => {
   const [projects, setProject] = useState({});
+
   useEffect(() => {
     fetch("http://localhost:3000/projects/" + id)
       .then((response) => response.json())
       .then((data) => setProject(data));
   }, []);
+
   useEffect(() => {
     const form = document.querySelector(".form-edit");
     const name = document.querySelector("#name");
@@ -49,6 +51,7 @@ const ProjectEdit = ({ id }) => {
                     </div>
                     
                     <form class="form-edit">
+                      
                         <div>
                             <label>Tên Project</label>
                             <input type="text" id="name" value="${

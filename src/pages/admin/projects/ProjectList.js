@@ -15,6 +15,8 @@ const ProjectList = () => {
       .then((response) => response.json())
       .then((data) => setProject(data));
   }, []);
+
+  // XÓA
   useEffect(() => {
     const btns = document.querySelectorAll("#btn-remove");
     for (let btn of btns) {
@@ -22,7 +24,7 @@ const ProjectList = () => {
         e.preventDefault();
         // Xóa local
         const id = this.dataset.id;
-        const newProject = projects.filter((project) => project.id != id);
+        const newProject = projects.find((project) => project.id != id);
         setProject(newProject);
 
         // Xóa server
@@ -39,18 +41,21 @@ const ProjectList = () => {
    <section class="box">
        <div class="title flex align-center">
            <h1 class="font-bold text-[30px] ">List Projects</h1>
-           <form class="ml-6">
-                <select name="" id="" class="w-[200px] px-2 py-2 border  rounded-md">
-                <option value="">All</option>
-                ${categories.map((cate) => {
-                  return `<option value="">${cate.name}</option>`;
-                })}
-                  
-                </select>
-               <input type="text" class="border px-3 py-2 rounded-md outline-none"
+           <form id="form-search" class="ml-6">
+              <select name="" id="" class="w-[200px] px-2 py-2 border  rounded-md">
+              <option value="">All</option>
+              ${categories.map((cate) => {
+                return `<option value="${cate.id}">${cate.name}</option>`;
+              })}
+              </select>
+               <input type="text" data-id="${
+                 projects.id
+               }" id="kyw" class="border px-3 py-2 rounded-md outline-none"
                    placeholder="Mời bạn nhập project muốn tìm">
                <button
-                   class="bg-blue-500 px-3 py-2 rounded-md text-white hover:bg-blue-600 deley-100">Search</button>
+                   class="bg-blue-500 px-3 py-2 rounded-md text-white hover:bg-blue-600 deley-100" data-id="${
+                     projects.id
+                   }" id="btn-search">Search</button>
            </form>
        </div>
        <table class="border w-full mb-4">
@@ -59,11 +64,11 @@ const ProjectList = () => {
                    <th class="border w-[40px] py-6">Id</th>
                    <th class="border w-[100px]">Tên Project</th>
                    <th class="border w-[100px]">Ngày đăng</th>
-                   <th class="border w-[100px]">Ảnh</th>
+                   <th class="border w-[130px]">Ảnh</th>
                    <th class="border w-[140px]">Người tạo</th>
-                   <th class="border w-[220px]">Mô tả</th>
-                   <th class="border w-[80px]">Link</th>
-                   <th class="border w-[150px]"></th>
+                   <th class="border w-[300px]">Mô tả</th>
+                   <th class="border w-[50px]">Link</th>
+                   <th class="border w-[120px]"></th>
                </tr>
            </thead>
            <tbody>
@@ -78,19 +83,19 @@ const ProjectList = () => {
                     <td class="border text-center w-[100px]">${
                       project.date
                     }</td>
-                    <td class="border text-center w-[100px]">${
+                    <td class="border text-center w-[130px]">${
                       project.image
                     }</td>
                     <td class="border text-center w-[140px]">${
                       project.author
                     }</td>
-                    <td class="border px-5 w-[220px]">${
+                    <td class="border px-5 w-[300px]">${
                       project.description
                     }</td>
-                    <td class="border px-5 w-[80px]"><a class="underline hover:decoration-red-400 hover:text-red-400" href="${
+                    <td class="border px-5 w-[50px]"><a class="underline hover:decoration-red-400 hover:text-red-400" href="${
                       project.link
                     }">${project.link}</a></td>
-                    <td class="border text-center w-[150px]">
+                    <td class="border text-center w-[120px]">
                         <a data-id="${
                           project.id
                         }" id="btn-remove" class="bg-red-500 px-2 py-1 rounded-md text-white hover:bg-red-600 deley-100"
@@ -106,10 +111,9 @@ const ProjectList = () => {
        </table>
        <form>
            <a href="/admin/projects/add"
-               class="bg-slate-500 px-3 py-2 rounded-md text-white hover:bg-slate-600 deley-100">Nhập
-               lại</a>
+               class="bg-slate-500 px-3 py-2 rounded-md text-white hover:bg-slate-600 deley-100">Thêm mới</a>
            <button
-               class="bg-blue-500 px-3 py-2 rounded-md text-white hover:bg-blue-600 deley-100">Lưu</button>
+               class="bg-blue-500 px-3 py-2 rounded-md text-white hover:bg-blue-600 deley-100">Xóa tất cả</button>
        </form>
    </section>
    ${Footer()}

@@ -19,6 +19,7 @@ import SkillPage from "./pages/view/SkillPage";
 import ServicePage from "./pages/view/ServicePage";
 import PortfolioPage from "./pages/view/PortfolioPage";
 import BlogPage from "./pages/view/BlogPage";
+import PortfolioDetailPage from "./pages/view/PortfolioDetailPage";
 
 const app = document.getElementById("app");
 
@@ -28,6 +29,9 @@ router.on("/about", () => render(AboutPage, app));
 router.on("/skill", () => render(SkillPage, app));
 router.on("/service", () => render(ServicePage, app));
 router.on("/portfolio", () => render(PortfolioPage, app));
+router.on("/portfolio/:id", ({ data }) =>
+  render(() => PortfolioDetailPage(data), app)
+);
 router.on("/blog", () => render(BlogPage, app));
 router.on("/contact", () => render(ContactPage, app));
 
