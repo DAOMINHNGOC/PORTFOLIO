@@ -59,14 +59,15 @@ const ProjectList = () => {
        <table class="border w-full mb-4">
            <thead>
                <tr class="border bg-slate-400 text-[20px] ">
-                   <th class="border w-[40px] py-6">Id</th>
+                   <th class="border w-[40px] py-6"></th>
+                   <th class="border w-[30px] py-6">Id</th>
                    <th class="border w-[100px]">Tên Project</th>
-                   <th class="border w-[100px]">Ngày đăng</th>
-                   <th class="border w-[130px]">Ảnh</th>
-                   <th class="border w-[140px]">Người tạo</th>
-                   <th class="border w-[300px]">Mô tả</th>
-                   <th class="border w-[50px]">Link</th>
-                   <th class="border w-[120px]"></th>
+                   <th class="border w-[80px]">Ngày đăng</th>
+                   <th class="border w-[9px]">Ảnh</th>
+                   <th class="border w-[100px]">Người tạo</th>
+                   <th class="border w-[200px]">Mô tả</th>
+                   <th class="border w-[200px]">Link</th>
+                   <th class="border w-[80px]"></th>
                </tr>
            </thead>
            <tbody>
@@ -74,26 +75,25 @@ const ProjectList = () => {
                  .map((project, index) => {
                    return `
                   <tr class="py-4 text-[16px]">
-                    <td class="border text-center w-[40px] py-4">${
+                  <td class="border text-center w-[40px] py-4"><input type="checkbox"></td>
+                    <td class="border text-center w-[30px] py-4">${
                       index + 1
                     }</td>
                     <td class="border px-5 w-[100px]">${project.name}</td>
-                    <td class="border text-center w-[100px]">${
-                      project.date
-                    }</td>
-                    <td class="border text-center w-[130px]">${
+                    <td class="border text-center w-[80px]">${project.date}</td>
+                    <td class="border text-center w-[90px] h-[70px]"><img class=" w-full h-full p-0" src="${
                       project.gallery
-                    }</td>
-                    <td class="border text-center w-[140px]">${
+                    }"></td>
+                    <td class="border text-center w-[100px]">${
                       project.author
                     }</td>
-                    <td class="border px-5 w-[300px]">${
+                    <td class="border px-5 w-[200px]">${
                       project.description
                     }</td>
-                    <td class="border px-5 w-[50px]"><a class="underline hover:decoration-red-400 hover:text-red-400" href="${
+                    <td class="border px-5 w-[200px]"><a class="underline hover:decoration-red-400 hover:text-red-400" href="${
                       project.link
                     }">${project.link}</a></td>
-                    <td class="border text-center w-[120px]">
+                    <td class="border text-center w-[80px]">
                         <a data-id="${
                           project.id
                         }" id="btn-remove" class="bg-red-500 px-2 py-1 rounded-md text-white hover:bg-red-600 deley-100"

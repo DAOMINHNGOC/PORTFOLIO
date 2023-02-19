@@ -5,18 +5,17 @@ import { useEffect, useState } from "../../lib";
 const PortfolioDetailPage = ({ id }) => {
   const [projects, setProject] = useState({});
   const [categories, setCategories] = useState({});
-
-  useEffect(() => {
-    fetch("http://localhost:3000/projects/" + id)
-      .then((response) => response.json())
-      .then((data) => setProject(data));
-  }, []);
   useEffect(() => {
     fetch("http://localhost:3000/categories/" + id)
       .then((response) => response.json())
       .then((data) => setCategories(data));
   }, []);
-  console.log(projects.name);
+  useEffect(() => {
+    fetch("http://localhost:3000/projects/" + id)
+      .then((response) => response.json())
+      .then((data) => setProject(data));
+  }, []);
+
   return `
     ${Header()}
     <!----------------------------------------------------------------- content -->
@@ -31,39 +30,28 @@ const PortfolioDetailPage = ({ id }) => {
 
             <div class="rows grid grid-cols-2 gap-4 mb-7">
                 <div>
-                    <div class="col image overflow-hidden rounded-md">
+                    <div class="col h-[300px] image overflow-hidden rounded-md">
                         <a href="">
-                            <img src="https://res.cloudinary.com/fashsion-brand/image/upload/v1655976667/image_45_mw2kej.jpg"
+                            <img src="${projects.gallery}"
                                 width="500"
                                 class="h-[300px] w-full h-full hover:opacity-50 hover:transition-all   hover:scale-105 rounded-md "
                                 alt=""></a>
                     </div>
-                    <div class="grid grid-cols-4 gap-2 mt-2">
+                    <div class="grid grid-cols-4 w-[400px] h-[100px] gap-2 mt-2">
                         <a class=" overflow-hidden" href=""><img
-                                class="hover:opacity-50   hover:scale-105 hover:transition-all"
-                                src="https://res.cloudinary.com/fashsion-brand/image/upload/v1655976667/image_45_mw2kej.jpg"
+                                class="hover:opacity-50  w-full h-full hover:scale-105 hover:transition-all"
+                                src="${projects.gallery}"
                                 alt=""></a>
-                        <a class=" overflow-hidden" href=""><img
-                                class="hover:opacity-50  hover:scale-105 hover:transition-all"
-                                src="https://res.cloudinary.com/fashsion-brand/image/upload/v1655976667/image_45_mw2kej.jpg"
-                                alt=""></a>
-                        <a class=" overflow-hidden" href=""><img
-                                class="hover:opacity-50  hover:scale-105 hover:transition-all"
-                                src="https://res.cloudinary.com/fashsion-brand/image/upload/v1655976667/image_45_mw2kej.jpg"
-                                alt=""></a>
-                        <a class=" overflow-hidden" href=""><img
-                                class="hover:opacity-50  hover:scale-105 hover:transition-all"
-                                src="https://res.cloudinary.com/fashsion-brand/image/upload/v1655976667/image_45_mw2kej.jpg"
-                                alt=""></a>
+                        
                     </div>
                 </div>
 
                 <div class=" bg-white p-6 border rounded-md hover:shadow-xl hover:transition-all">
                     <div class="">
                         <span>Ngày đăng: ${projects.date}</span>
-                        <h1 class=" font-bold text-[20px]  hover:transition-all hover:text-red-500"><a href="/portfolio/:id">${
+                        <h1 class=" font-bold text-[20px]  ">${
                           projects.name
-                        }</a></h1> <br>
+                        }</h1> <br>
                     </div>
                     <p class=" w-full p-0 m-0">${projects.description}</p>
                     <h1>USED STACK:</h1>
@@ -71,8 +59,8 @@ const PortfolioDetailPage = ({ id }) => {
 
 
 
-                        <li><a class="px-3 border py-1 mx-1   rounded-md bg-slate-200 shadow-md"
-                                href="">${categories.name}</a></li>
+                        <li><div class="px-3 border py-1 mx-1   rounded-md bg-slate-200 shadow-md"
+                                href="">${categories.name}</div></li>
 
 
 

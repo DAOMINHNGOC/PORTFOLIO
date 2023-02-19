@@ -20,13 +20,15 @@ const ProjectEdit = ({ id }) => {
     const author = document.querySelector("#author");
     const description = document.querySelector(".description");
     const link = document.querySelector("#link");
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
+      const urls = await uploadFiles(image.files);
       const formData = {
         name: name.value,
         date: date.value,
         author: author.value,
         link: link.value,
+        gallery: urls,
         image: image.value,
         description: description.value,
       };
@@ -35,6 +37,33 @@ const ProjectEdit = ({ id }) => {
         .then(() => router.navigate("/admin/projects"));
     });
   });
+  const uploadFiles = async (files) => {
+    if (files) {
+      const CLOUD_NAME = "fashsion-brand";
+      const PRESET_NAME = "upload-image";
+      const urls = [];
+      const FOLDER_NAME = "portfolio";
+      const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+      const formData = new FormData();
+
+      formData.append("upload_preset", PRESET_NAME);
+      formData.append("folder", FOLDER_NAME);
+
+      for (const file of files) {
+        formData.append("file", file);
+
+        const response = await axios.post(api, formData, {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        });
+        urls.push(response.data.secure_url);
+
+        // return urls;
+      }
+      return urls;
+    }
+  };
   return `
     ${Header()}
     <!-- -----------------------------------------CONTENT -->
@@ -67,8 +96,13 @@ const ProjectEdit = ({ id }) => {
                         </div>
                         <div>
                             <label>Image</label>
+                            <div class="w-[300px] h-[150px]">
+                            
+                            <img class="w-full h-full" src="${
+                              projects.gallery
+                            }"></div>
                             <input type="file" id="image" value="${
-                              projects.image
+                              projects.gallery
                             }" class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4"
                                 placeholder="Image projects">
                         </div>
@@ -80,10 +114,10 @@ const ProjectEdit = ({ id }) => {
                               placeholder="Người tạo">
                         </div>
                         <label>Mô tả</label>
-                        <textarea value="${
-                          projects.description
-                        }" class="w-full py-4 px-3 description outline-none rounded-md shadow-md mb-4" name="" 
-                            cols="30" rows="5" placeholder="Description"></textarea>
+                        <textarea class="w-full py-4 px-3 description outline-none rounded-md shadow-md mb-4" name="" 
+                            cols="30" rows="5" placeholder="Description">${
+                              projects.description
+                            }</textarea>
                         <div>
                           <label>Link page</label>
                           <input type="text" value="${

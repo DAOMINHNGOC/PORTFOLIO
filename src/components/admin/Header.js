@@ -6,7 +6,7 @@ const Header = () => {
   ${Head()}
   <div class="bg-slate-50 block">
         <div class="w-[1450px] mx-auto">
-            <div class=" grid grid-cols-[250px,auto] pt-10 gap-12">
+            <div class=" grid grid-cols-[250px,auto] pt-10 gap-4">
                 <!-- ----------------------------------------HEADER -->
                 <header class="bg-white">
                     <div class="w-[200px] mx-auto">

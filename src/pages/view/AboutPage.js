@@ -14,8 +14,8 @@ const AboutPage = () => {
         <!-- project name 1 -->
         <section class="w-[950px] mx-auto mb-[80px] mt-20">
             <div class="rows grid grid-cols-[400px,auto] gap-20">
-                <div class="col image">
-                    <img class="rounded-xl hover:scale-110 transition-all" src="./image/JEKP9863.JPG" alt="">
+                <div class="col image overflow-hidden rounded-xl transition-all">
+                    <img class="rounded-xl hover:scale-110 transition-all" src="https://res.cloudinary.com/fashsion-brand/image/upload/v1676753106/portfolio/hlo77lqxgbkxofktnoof.jpg" alt="">
                 </div>
                 <div class="col bg-white p-8">
 

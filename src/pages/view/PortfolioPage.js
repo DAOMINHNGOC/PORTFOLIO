@@ -32,14 +32,14 @@ const PortfolioPage = () => {
                 .map((project) => {
                   return `
                 <div class="rows grid grid-cols-2 gap-4 mb-7">
-                    <div class="col image overflow-hidden rounded-md"> 
+                    <div class="col h-[300px] image overflow-hidden rounded-md"> 
                         <a href="${project.link}" > 
                         <img src="${
                           project.gallery
                         }" width="500" class="h-[300px] w-full h-full hover:opacity-50 hover:transition-all   hover:scale-105 rounded-md " alt=""></a>
                     </div>
                     
-                    <div class=" bg-white p-6 border rounded-md hover:shadow-xl hover:transition-all">
+                    <div class=" bg-white h-[300px] p-6 border rounded-md hover:shadow-xl hover:transition-all">
                         <div class="">
                             <span>Ngày đăng: ${project.date}</span>
                             <h1 class=" font-bold text-[20px]  hover:transition-all hover:text-red-500"><a href="/portfolio/${
