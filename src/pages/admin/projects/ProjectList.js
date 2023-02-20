@@ -1,4 +1,5 @@
 import axios from "axios";
+import Category from "../../../components/admin/Category";
 import Footer from "../../../components/admin/Footer";
 import Header from "../../../components/admin/Header";
 import { useEffect, useState } from "../../../lib";
@@ -8,9 +9,14 @@ const ProjectList = () => {
   const [categories, setcategory] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/categories")
+      .get(`http://localhost:3000/categories`)
       .then(({ data }) => setcategory(data));
   }, []);
+  // const onHandleclick = (id) => {
+  //   axios
+  //     .put(`http://localhost:3000/categories/${id}?_embed=projects`)
+  //     .then(({ data }) => setProject(data.projects));
+  // };
   useEffect(() => {
     axios
       .get("http://localhost:3000/projects")
@@ -27,9 +33,7 @@ const ProjectList = () => {
         const newProject = projects.filter((project) => project.id != id);
         setProject(newProject);
         // Xóa server
-        axios
-          .delete(`http://localhost:3000/projects/${id}`)
-          .then(() => alert("Xóa thành công"));
+        axios.delete(`http://localhost:3000/projects/${id}`);
       });
     }
   });
@@ -39,13 +43,12 @@ const ProjectList = () => {
    <section class="box">
        <div class="title flex align-center">
            <h1 class="font-bold text-[30px] ">List Projects</h1>
-           <form id="form-search" class="ml-6">
-              <select name="" id="" class="w-[200px] px-2 py-2 border  rounded-md">
-              ${categories.map((cate) => {
-                return `<option>${cate.name}</option>`;
-              })}
-              
-              </select>
+           <form id="form-search"  class="ml-6 flex items-center">
+           <select  class="w-full py-2 px-1 outline-none rounded-md shadow-md mx-2">
+           ${categories.map((cate) => {
+             return `<option value="${cate.id}">${cate.name}</option>`;
+           })}
+       </select> 
                <input type="text" data-id="${
                  projects.id
                }" id="kyw" class="border px-3 py-2 rounded-md outline-none"
@@ -81,18 +84,17 @@ const ProjectList = () => {
                     }</td>
                     <td class="border px-5 w-[100px]">${project.name}</td>
                     <td class="border text-center w-[80px]">${project.date}</td>
-                    <td class="border text-center w-[90px] h-[70px]"><img class=" w-full h-full p-0" src="${
-                      project.gallery
-                    }"></td>
-                    <td class="border text-center w-[100px]">${
-                      project.author
-                    }</td>
-                    <td class="border px-5 w-[200px]">${
-                      project.description
-                    }</td>
-                    <td class="border px-5 w-[200px]"><a class="underline hover:decoration-red-400 hover:text-red-400" href="${
+                    <td class="border text-center w-[90px] h-[70px]">
+                    <img class=" w-full h-full p-0" src="${project.album}"></td>
+                    <td class="border text-center w-[100px]">
+                    ${project.author}</td>
+                    <td class="border px-5 w-[200px]">
+                    ${project.description}</td>
+                    <td class="border px-5 w-[200px]">
+                    <a class="underline hover:decoration-red-400 hover:text-red-400" href="${
                       project.link
-                    }">${project.link}</a></td>
+                    }">${project.link}</a>
+                    </td>
                     <td class="border text-center w-[80px]">
                         <a data-id="${
                           project.id

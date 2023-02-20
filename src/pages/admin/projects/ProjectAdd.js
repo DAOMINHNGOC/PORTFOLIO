@@ -22,16 +22,19 @@ const ProjectAdd = () => {
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
       const urls = await uploadfiles(image.files);
+
+      // console.log(image.files);
       const formData = {
         name: name.value,
-        idcategory: idcategory,
+        categoryId: Number(idcategory.value),
         date: date.value,
         author: author.value,
         link: link.value,
-        gallery: urls,
+        album: urls,
         image: image.value,
         description: description.value,
       };
+      console.log(idcategory);
 
       axios
         .post("http://localhost:3000/projects", formData)
@@ -65,6 +68,7 @@ const ProjectAdd = () => {
       return urls;
     }
   };
+  console.log(categories);
   return `
     ${Header()}
     <!-- -----------------------------------------CONTENT -->
@@ -82,15 +86,15 @@ const ProjectAdd = () => {
                     <form class="form-add">
                         <div>
                             <label>Tên Loại</label><br>
-                            <select  class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4">
-                              ${categories.map((cate) => {
-                                return `<option>${cate.name}</option>`;
+                            <select id="idcategory" class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4">
+                              ${categories.map((cate) => /*html*/ {
+                                return `<option value="${cate.id}">${cate.name}</option>`;
                               })}
                             </select>
                         </div>
                         <div>
                             <label>Tên Project</label>
-                            <input type="text" id="name" class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4"
+                            <input type="text" id="name"  class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4"
                                 placeholder="Tên projects">
                         </div>
                         <div>

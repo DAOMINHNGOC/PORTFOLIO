@@ -1,3 +1,5 @@
+import axios from "axios";
+import Category from "../../components/admin/Category";
 import Footer from "../../components/view/Footer";
 import Header from "../../components/view/Header";
 import { useEffect, useState } from "../../lib";
@@ -5,18 +7,27 @@ import { useEffect, useState } from "../../lib";
 const PortfolioPage = () => {
   const [projects, setProjects] = useState([]);
   const [categories, setCategories] = useState([]);
-  console.log(projects);
+
+  // console.log(projects);
+  //CATEGORY
   useEffect(() => {
     fetch("http://localhost:3000/categories")
       .then((response) => response.json())
       .then((data) => setCategories(data));
   }, []);
+  // PROJECT
   useEffect(() => {
     fetch("http://localhost:3000/projects")
       .then((response) => response.json())
       .then((data) => setProjects(data));
   }, []);
-  return `
+
+  const onHandleclick = (id) => {
+    fetch(`http://localhost:3000/categories/${id}?_embed=projects`)
+      .then((response) => response.json())
+      .then((data) => setProjects(data.projects));
+  };
+  return /*html*/ `
   ${Header()}
   <!----------------------------------------------------------------- content -->
   <div class="">
@@ -25,48 +36,54 @@ const PortfolioPage = () => {
           <h1 class=" font-black text-[32px] pt-20 pb-8">Portfolio</h1>
           <p class="pb-8">Most recent work</p>
       </section>
+      <section class="">
+                ${Category({ categories, onClick: onHandleclick })}
+            </section>
       <!-- project name 1 -->
       <section class="w-[1200px] mx-auto mb-[80px] mt-10">
-          
+      <div class="rows grid grid-cols-2 gap-4 mb-7">
               ${projects
                 .map((project) => {
                   return `
-                <div class="rows grid grid-cols-2 gap-4 mb-7">
-                    <div class="col h-[300px] image overflow-hidden rounded-md"> 
-                        <a href="${project.link}" > 
-                        <img src="${
-                          project.gallery
-                        }" width="500" class="h-[300px] w-full h-full hover:opacity-50 hover:transition-all   hover:scale-105 rounded-md " alt=""></a>
-                    </div>
+              
                     
-                    <div class=" bg-white h-[300px] p-6 border rounded-md hover:shadow-xl hover:transition-all">
-                        <div class="">
-                            <span>Ngày đăng: ${project.date}</span>
-                            <h1 class=" font-bold text-[20px]  hover:transition-all hover:text-red-500"><a href="/portfolio/${
-                              project.id
-                            }">${project.name}</a></h1> <br>
+                  <div>
+                        <div class="col h-[300px] mb-4 bg-slate-400 image overflow-hidden rounded-md"> 
+                            <a href="${project.link}" > 
+                                <img src="${
+                                  project.album
+                                }" width="500" class="h-[300px] p-1 w-full h-full hover:opacity-50 hover:transition-all   hover:scale-105 rounded-md " alt="">
+                            </a>
                         </div>
-                        <p class=" w-full p-0 m-0">${project.description}</p>
-                        <h1>USED STACK:</h1> 
-                            <ul class="flex items-center  mt-10">
-                            
-                            ${categories
-                              .map((cat) => {
-                                return `
-                              
-                                  <li><a class="px-3 border py-1 mx-1   rounded-md bg-slate-200 shadow-md" href="">${cat.name}</a></li>
-                                  
-                              
-                              `;
-                              })
-                              .join("")}
+                    
+                      <div class=" bg-white h-[300px] p-6 border rounded-md hover:shadow-xl hover:transition-all">
+                          <div class="">
+                              <span>Ngày đăng: ${project.date}</span>
+                              <h1 class=" font-bold text-[23px]  hover:transition-all hover:text-red-500">
+                                <a href="/portfolio/${project.id}">${
+                    project.name
+                  }
+                                </a>
+                              </h1> <br>
+                          </div>
+                          <p class=" w-full p-0 m-0">${project.description}</p>
+                          <h1>USED STACK:</h1> 
+                              <ul class="flex items-center  mt-10">
+                                  ${categories
+                                    .map((cat) => {
+                                      return `
+                                        <li><a class="px-3 border py-1 mx-1   rounded-md bg-slate-200 shadow-md" href="">${cat.name}</a></li>
+                                    `;
+                                    })
+                                    .join("")}
                               </ul>
+                      </div>
                     </div>
-                </div>
+               
                 `;
                 })
                 .join("")}
-
+                </div>
           
       </section>
       <section class="w-[900px] mx-auto mb-[80px] mt-10">

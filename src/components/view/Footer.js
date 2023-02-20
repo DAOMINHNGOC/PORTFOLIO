@@ -1,8 +1,8 @@
 const Footer = () => {
   return ` <!-- FOOTER -->
-  <footer class=" ">
-      <div class=" flex justify-between items-center px-10 py-12">
-          <div>© 2035 by Maya Nelson.
+  <footer class=" w-[520px] sm:w-[1510px]">
+      <div class=" sm:flex justify-between items-center px-10 py-12">
+          <div class="hidden sm:block">© 2035 by Maya Nelson.
               Powered and secured by Wix</div>
           <div class="flex">
               <div class="pl-6 pr-6 text-center">
@@ -13,7 +13,7 @@ const Footer = () => {
               <div class=" pr-6 text-center">
                   <p class="font-bold">Write</p> <br>
 
-                  ngocdmph20534@fpt.edu.vn
+                  <p class="hidden sm:block">ngocdmph20534@fpt.edu.vn</p>
               </div>
               <div class="pr-6 text-center">
                   <p class="font-bold">Follow</p>

@@ -1,7 +1,28 @@
+import axios from "axios";
 import Footer from "../../../components/admin/Footer";
 import Header from "../../../components/admin/Header";
+import { useEffect, useState } from "../../../lib";
 
 const AccountList = () => {
+  const [accounts, setaccounts] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/accounts")
+      .then(({ data }) => setaccounts(data));
+  }, []);
+  useEffect(() => {
+    const btns = document.querySelectorAll(".btn-remove");
+    for (let btn of btns) {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        const id = btn.dataset.id;
+        setaccounts(accounts.filter((account) => account.id != +id));
+
+        axios.delete("http://localhost:3000/accounts/" + id);
+      });
+    }
+  });
+
   return `
     ${Header()}
     <!-- -----------------------------------------CONTENT -->
@@ -19,25 +40,36 @@ const AccountList = () => {
             <thead>
                 <tr class="border bg-slate-400 text-[23px] ">
                     <th class="border w-[60px] py-6">Id</th>
-                    <th class="border w-[250px]">Tên Account</th>
-                    <th class="border w-[140px]">Giá Project</th>
-                    <th class="border w-[400px]">Mô tả</th>
+                    <th class="border w-[250px]">Username</th>
+                    <th class="border w-[140px]">Full name</th>
+                    <th class="border w-[400px]">Password</th>
                     <th class="border"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="py-4 text-[18px]">
-                    <td class="border text-center w-[60px] py-4">1</td>
-                    <td class="border px-5 w-[250px]">Dự án 1</td>
-                    <td class="border text-center w-[140px]">20000 đ</td>
-                    <td class="border px-5 w-[400px]">Chất</td>
+                ${accounts
+                  .map((account, index) => {
+                    return `
+                  <tr class="py-4 text-[18px]">
+                    <td class="border text-center w-[60px] py-4">${
+                      index + 1
+                    }</td>
+                    <td class="border px-5 w-[250px]">${account.username}</td>
+                    <td class="border text-center w-[140px]">${
+                      account.fullname
+                    }</td>
+                    <td class="border px-5 w-[400px]">${account.password}</td>
                     <td class="border text-center">
-                        <a class="bg-red-500 px-3 py-2 rounded-md text-white hover:bg-red-600 deley-100"
-                            href="">Xóa</a>
+                        <a data-id="${
+                          account.id
+                        }" class="bg-red-500 btn-remove px-3 py-2 rounded-md text-white hover:bg-red-600 deley-100"
+                            href="${account.id}">Xóa</a>
                         <a class="bg-green-500 px-3 py-2 rounded-md text-white hover:bg-green-600 deley-100"
                             href="">Sửa</a>
                     </td>
-                </tr>
+                </tr>`;
+                  })
+                  .join("")}
             </tbody>
         </table>
         <form>

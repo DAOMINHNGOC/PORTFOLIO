@@ -34,17 +34,17 @@ const ContactPage = () => {
                     <form>
                         <div class="grid grid-cols-2 gap-6">
                             <div class="block mb-6">
-                                <input type="text" class="rounded-md w-full px-4 pb-7 h-[90px] bg-indigo-100"
+                                <input type="text" class="rounded-md outline-none w-full px-4 pb-7 h-[90px] bg-indigo-100"
                                     placeholder="Name">
                             </div>
-                            <input type="text" class="rounded-md w-full px-4 pb-7 h-[90px] bg-indigo-100 "
+                            <input type="text" class="rounded-md w-full outline-none  px-4 pb-7 h-[90px] bg-indigo-100 "
                                 placeholder="Email">
                         </div>
                         <div>
-                            <input type="text" class="w-full px-4 pb-7 mb-6 rounded-md h-[90px] bg-indigo-100"
+                            <input type="text" class="w-full px-4 pb-7 outline-none  mb-6 rounded-md h-[90px] bg-indigo-100"
                                 placeholder="Project">
                         </div>
-                        <textarea class="bg-indigo-100 px-4 py-4 w-full" placeholder="Message" name="" id=""
+                        <textarea class="bg-indigo-100 px-4 py-4 w-full outline-none " placeholder="Message" name="" id=""
                             cols="50" rows="10"></textarea>
                         <button class="bg-indigo-400 text-white rounded-lg hover:bg-slate-400 px-4 py-3">Send
                             Message</button>

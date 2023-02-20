@@ -28,11 +28,11 @@ const PortfolioDetailPage = ({ id }) => {
         <!-- project name 1 -->
         <section class="w-[1200px] mx-auto mb-[80px] mt-10">
 
-            <div class="rows grid grid-cols-2 gap-4 mb-7">
-                <div>
-                    <div class="col h-[300px] image overflow-hidden rounded-md">
+            <div class="rows  mb-9">
+                <div class="bg-slate-200 mb-3">
+                    <div class="col h-[600px] p-1 image overflow-hidden rounded-md">
                         <a href="">
-                            <img src="${projects.gallery}"
+                            <img src="${projects.album}"
                                 width="500"
                                 class="h-[300px] w-full h-full hover:opacity-50 hover:transition-all   hover:scale-105 rounded-md "
                                 alt=""></a>
@@ -40,9 +40,8 @@ const PortfolioDetailPage = ({ id }) => {
                     <div class="grid grid-cols-4 w-[400px] h-[100px] gap-2 mt-2">
                         <a class=" overflow-hidden" href=""><img
                                 class="hover:opacity-50  w-full h-full hover:scale-105 hover:transition-all"
-                                src="${projects.gallery}"
+                                src="${projects.album}"
                                 alt=""></a>
-                        
                     </div>
                 </div>
 

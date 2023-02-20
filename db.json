@@ -2,37 +2,36 @@
   "projects": [
     {
       "name": "áo nam",
-      "date": "2003-02-22",
+      "date": "2023-02-20",
+      "categoryId": "4",
       "author": "Đào Minh Ngọc",
       "link": "https://duan2-food.vercel.app/",
-      "gallery": [
-        "https://res.cloudinary.com/fashsion-brand/image/upload/v1676790715/portfolio/wowvgeok3wk5he7uoerf.png"
+      "album": [
+        "https://res.cloudinary.com/fashsion-brand/image/upload/v1676833082/portfolio/ropmeuwvttfhrdj4rbbf.png"
       ],
-      "image": "C:\\fakepath\\2023-02-19.png",
-      "description": "a",
+      "image": "",
+      "description": "Thiết kế đẹp\n                            \n                            ",
       "id": 1
     },
     {
-      "name": "áo nam",
-      "date": "2003-05-22",
-      "author": "Đào Minh Ngọc",
-      "link": "a",
-      "gallery": [
-        "https://res.cloudinary.com/fashsion-brand/image/upload/v1676789597/portfolio/l9lcu9tytabkjdbu1vvh.png"
-      ],
-      "image": "C:\\fakepath\\2023-02-16.png",
+      "name": "",
+      "categoryId": 1,
+      "date": "",
+      "author": "",
+      "link": "",
+      "album": [],
+      "image": "",
       "description": "",
       "id": 2
     },
     {
       "name": "",
+      "categoryId": 4,
       "date": "",
       "author": "",
       "link": "",
-      "gallery": [
-        "https://res.cloudinary.com/fashsion-brand/image/upload/v1676753040/portfolio/mky1jdjecni8eceunwdt.heic"
-      ],
-      "image": "C:\\fakepath\\IMG_7522.HEIC",
+      "album": [],
+      "image": "",
       "description": "",
       "id": 3
     }
@@ -55,18 +54,65 @@
       "id": 5
     }
   ],
-  "account": [
+  "accounts": [
     {
-      "name": "",
-      "id": 1
+      "id": 2,
+      "username": "ngoc",
+      "fullname": "dao minh ngoc",
+      "password": 123455
     },
     {
-      "name": "JS",
-      "id": 2
+      "id": 3,
+      "username": "ngoc",
+      "fullname": "dao minh ngoc",
+      "password": 123455
     },
     {
-      "name": "PHP",
-      "id": 3
+      "id": 4,
+      "username": "ngoc",
+      "fullname": "dao minh ngoc",
+      "password": 123455
+    }
+  ],
+  "blogs": [
+    {
+      "id": 1,
+      "album": [
+        "https://res.cloudinary.com/fashsion-brand/image/upload/v1676833082/portfolio/ropmeuwvttfhrdj4rbbf.png"
+      ],
+      "date": "2023-02-20",
+      "image": "",
+      "business": "Frontend",
+      "title": "Don't wait until you officially started business.",
+      "username": "ngoc",
+      "heartId": 124,
+      "commentId": 12345
+    },
+    {
+      "id": 2,
+      "album": [
+        "https://res.cloudinary.com/fashsion-brand/image/upload/v1676833082/portfolio/ropmeuwvttfhrdj4rbbf.png"
+      ],
+      "date": "2023-02-20",
+      "image": "",
+      "business": "Frontend",
+      "title": "Don't wait until you officially started business.",
+      "username": "ngoc",
+      "heartId": 124,
+      "commentId": 12345
+    },
+    {
+      "id": 3,
+      "album": [
+        "https://res.cloudinary.com/fashsion-brand/image/upload/v1676833082/portfolio/ropmeuwvttfhrdj4rbbf.png"
+      ],
+      "date": "2023-02-20",
+      "image": "",
+      "business": "Frontend",
+      "title": "Don't wait until you officially started business.",
+      "username": "ngoc",
+      "heartId": 124,
+      "commentId": 12345
     }
   ]
 }

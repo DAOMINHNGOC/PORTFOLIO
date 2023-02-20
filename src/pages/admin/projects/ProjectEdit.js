@@ -5,7 +5,16 @@ import { router, useEffect, useState } from "../../../lib";
 
 const ProjectEdit = ({ id }) => {
   const [projects, setProject] = useState({});
+  const [categories, setCategories] = useState([]);
 
+  // CATEGORY
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/categories`)
+      .then(({ data }) => setCategories(data));
+  }, []);
+
+  //PROJECT
   useEffect(() => {
     axios
       .get(`http://localhost:3000/projects/${id}`)
@@ -15,6 +24,7 @@ const ProjectEdit = ({ id }) => {
   useEffect(() => {
     const form = document.querySelector(".form-edit");
     const name = document.querySelector("#name");
+    const category = document.querySelector("#category");
     const date = document.querySelector("#date");
     const image = document.querySelector("#image");
     const author = document.querySelector("#author");
@@ -22,13 +32,27 @@ const ProjectEdit = ({ id }) => {
     const link = document.querySelector("#link");
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
-      const urls = await uploadFiles(image.files);
+
+      let ArrAlbum = [];
+      // ArrAlbum =
+      //   image.files.length == 0
+      //     ? (ArrAlbum = image.accept.split(","))
+      //     : (ArrAlbum = await uploadFiles(image.files));
+      if (image.files.length == 0) {
+        ArrAlbum = image.accept.split(",");
+      } else {
+        ArrAlbum = await uploadFiles(image.files);
+      }
+      console.log(ArrAlbum[0]);
+
+      // const urls = await uploadFiles(image.files);
       const formData = {
         name: name.value,
         date: date.value,
+        categoryId: category.value,
         author: author.value,
         link: link.value,
-        gallery: urls,
+        album: ArrAlbum,
         image: image.value,
         description: description.value,
       };
@@ -64,12 +88,12 @@ const ProjectEdit = ({ id }) => {
       return urls;
     }
   };
-  return `
+  return /*html*/ `
     ${Header()}
     <!-- -----------------------------------------CONTENT -->
                 <section class="box">
                     <div class="title flex align-center">
-                        <h1 class="font-bold text-[30px]">Add Projects</h1>
+                        <h1 class="font-bold text-[30px]">Edit Projects</h1>
                         <form class="ml-6">
                             <input type="text" class="border px-3 py-2 rounded-md outline-none"
                                 placeholder="Mời bạn nhập project muốn tìm">
@@ -79,7 +103,20 @@ const ProjectEdit = ({ id }) => {
                     </div>
                     
                     <form class="form-edit">
-                      
+                        <div>
+                            <label>Tên Loại</label><br>
+                            <select id="category" class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4">
+                          
+                                ${categories.map((cate) => {
+                                  if (projects.categoryId == cate.id) {
+                                    return /*html*/ `<option value=${cate.id} selected>${cate.name}</option>`;
+                                  } else {
+                                    return /*html*/ `<option value=${cate.id}>${cate.name}</option>`;
+                                  }
+                                })};
+                        
+                            </select> 
+                        </div>
                         <div>
                             <label>Tên Project</label>
                             <input type="text" id="name" value="${
@@ -97,13 +134,11 @@ const ProjectEdit = ({ id }) => {
                         <div>
                             <label>Image</label>
                             <div class="w-[300px] h-[150px]">
-                            
-                            <img class="w-full h-full" src="${
-                              projects.gallery
-                            }"></div>
-                            <input type="file" id="image" value="${
-                              projects.gallery
-                            }" class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4"
+                            <img class="w-full h-full" src="${projects.album}">
+                            </div>
+                            <input type="file" accept="${
+                              projects.album
+                            }"  id="image" class="w-full py-4 px-3 outline-none rounded-md shadow-md mb-4"
                                 placeholder="Image projects">
                         </div>
                         <div>
@@ -117,7 +152,8 @@ const ProjectEdit = ({ id }) => {
                         <textarea class="w-full py-4 px-3 description outline-none rounded-md shadow-md mb-4" name="" 
                             cols="30" rows="5" placeholder="Description">${
                               projects.description
-                            }</textarea>
+                            }
+                            </textarea>
                         <div>
                           <label>Link page</label>
                           <input type="text" value="${
@@ -130,11 +166,13 @@ const ProjectEdit = ({ id }) => {
                             <a href="admin/projects/${
                               projects.id
                             }/edit" class="bg-red-500 px-3 py-2 rounded-md text-white hover:bg-red-600 deley-100">Nhập
-                                lại</a>
+                                lại
+                                </a>
                             <a class="bg-green-500 px-3 py-2 rounded-md text-white hover:bg-green-600 deley-100"
                                 href="/admin/projects">Danh sách</a>
                             <button
-                                class="bg-blue-500 px-3 py-2 rounded-md text-white hover:bg-blue-600 deley-100">Lưu</button>
+                                class="bg-blue-500 px-3 py-2 rounded-md text-white hover:bg-blue-600 deley-100">Lưu
+                                </button>
                         </div>
                     </form>
                     

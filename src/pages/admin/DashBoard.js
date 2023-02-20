@@ -15,3 +15,9 @@ const DashBoard = () => {
 };
 
 export default DashBoard;
+
+//muốn lấy resource con thì sử dụng _embed
+// http://localhost:3000/categories/1?_embed=projects
+
+// muốn lấy resource cha thì sử dụng _expand
+// http://localhost:3000/projects/1?_expand=category
